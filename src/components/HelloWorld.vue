@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    
+    {{msg}}
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   },
   created(){
@@ -21,6 +21,7 @@ export default {
       this.$axios.get("http://5c92dbfae7b1a00014078e61.mockapi.io/owners").then(result=>{     
         let male = result.data.filter(re=>re.gender=="Male").map(data=>data.name).sort();
         let female = result.data.filter(re=>re.gender=="Female").map(data=>data.name).sort();
+        this.msg = `Male:${male}; Female:${female}`;
         console.log("Male: " + male);
         console.log("Female: " + female);
       });
